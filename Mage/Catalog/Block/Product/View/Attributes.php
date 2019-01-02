@@ -57,14 +57,14 @@ class Mage_Catalog_Block_Product_View_Attributes extends Mage_Core_Block_Templat
         $product = $this->getProduct();
         $attributes = $product->getAttributes();
         foreach ($attributes as $attribute) {
-//            if ($attribute->getIsVisibleOnFront() && $attribute->getIsUserDefined() && !in_array($attribute->getAttributeCode(), $excludeAttr)) {
-            if ($attribute->getIsVisibleOnFront() && !in_array($attribute->getAttributeCode(), $excludeAttr)) {
+            // if ($attribute->getIsVisibleOnFront() && $attribute->getIsUserDefined() && !in_array($attribute->getAttributeCode(), $excludeAttr)) {
+            if ($attribute->getIsVisibleOnFront() && !in_array($attribute->getAttributeCode(), $excludeAttr) && !(($attribute->getFrontend()->getValue($product) == '' || $attribute->getFrontend()->getValue($product) == 'Não') && $product->getAttributeText($attribute->getAttributeCode()) == '')) {
                 $value = $attribute->getFrontend()->getValue($product);
 
                 if (!$product->hasData($attribute->getAttributeCode())) {
                     $value = Mage::helper('catalog')->__('N/A');
                 } elseif ((string)$value == '') {
-                    $value = Mage::helper('catalog')->__('No');
+                    $value = Mage::helper('catalog')->__('');
                 } elseif ($attribute->getFrontendInput() == 'price' && is_string($value)) {
                     $value = Mage::app()->getStore()->convertPrice($value, true);
                 }

@@ -240,7 +240,8 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         } else {
             $session->setBeforeAuthUrl($this->_getRefererUrl());
         }
-        $this->_redirect('*/*/logoutSuccess');
+        // $this->_redirect('*/*/logoutSuccess');
+        $this->_redirect('/');
     }
 
     /**
@@ -849,7 +850,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
             $this->_getSession()->unsetData(self::TOKEN_SESSION_NAME);
             $this->_getSession()->unsetData(self::CUSTOMER_ID_SESSION_NAME);
 
-            $this->_getSession()->addSuccess($this->_getHelper('customer')->__('Your password has been updated.'));
+            $this->_getSession()->addSuccess($this->_getHelper('customer')->__('Sua senha foi atualizada.'));
             $this->_redirect('*/*/login');
         } catch (Exception $exception) {
             $this->_getSession()->addException($exception, $this->__('Cannot save a new password.'));

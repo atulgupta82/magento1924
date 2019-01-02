@@ -414,11 +414,6 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
      */
     public function updatePostAction()
     {
-        if (!$this->_validateFormKey()) {
-            $this->_redirect('*/*/');
-            return;
-        }
-
         $updateAction = (string)$this->getRequest()->getParam('update_cart_action');
 
         switch ($updateAction) {
@@ -504,7 +499,9 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
             $this->_getSession()->addError($this->__('Cannot remove the item.'));
         }
 
-        $this->_redirectReferer(Mage::getUrl('*/*'));
+        $url = str_replace(Mage::getUrl(), '', Mage::helper('core/http')->getHttpReferer());
+
+        $this->_redirect(($url) ? $url : 'checkout/cart');
     }
 
     /**
@@ -540,7 +537,8 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
         if (!empty($code)) {
             $this->_getQuote()->getShippingAddress()->setShippingMethod($code)/*->collectTotals()*/->save();
         }
-        $this->_goBack();
+        $this->_redirectReferer(Mage::getUrl('checkout/cart'));
+
     }
 
     /**

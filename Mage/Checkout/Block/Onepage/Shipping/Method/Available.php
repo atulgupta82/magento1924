@@ -36,7 +36,7 @@ class Mage_Checkout_Block_Onepage_Shipping_Method_Available extends Mage_Checkou
 {
     protected $_rates;
     protected $_address;
-
+    
     public function getShippingRates()
     {
 

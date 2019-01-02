@@ -61,7 +61,8 @@ class Mage_Sales_Model_Observer
             $quotes->addFieldToFilter('store_id', $storeId);
             $quotes->addFieldToFilter('updated_at', array('to'=>date("Y-m-d", time()-$lifetime)));
             $quotes->addFieldToFilter('is_active', 0);
-
+			$quotes->addFieldToFilter('reserved_order_id', array('null'=>true));
+			
             foreach ($this->getExpireQuotesAdditionalFilterFields() as $field => $condition) {
                 $quotes->addFieldToFilter($field, $condition);
             }

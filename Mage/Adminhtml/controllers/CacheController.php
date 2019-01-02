@@ -53,7 +53,15 @@ class Mage_Adminhtml_CacheController extends Mage_Adminhtml_Controller_Action
      */
     public function flushAllAction()
     {
-        Mage::dispatchEvent('adminhtml_cache_flush_all');
+        $allStores = Mage::app()->getStores();
+		foreach ($allStores as $_eachStoreId => $val)
+		{
+		$_storeCode = Mage::app()->getStore($_eachStoreId)->getCode();
+		@unlink(Mage::getBaseDir()."/var/cache/menu_tmp_".$_storeCode.".txt");
+		@unlink(Mage::getBaseDir()."/var/cache/menu_tmp_".$_storeCode."_mb.txt");
+		}
+		
+		Mage::dispatchEvent('adminhtml_cache_flush_all');
         Mage::app()->getCacheInstance()->flush();
         $this->_getSession()->addSuccess(Mage::helper('adminhtml')->__("The cache storage has been flushed."));
         $this->_redirect('*/*');

@@ -822,13 +822,13 @@ class Mage_Customer_Model_Customer extends Mage_Core_Model_Abstract
     public function validate()
     {
         $errors = array();
-        if (!Zend_Validate::is( trim($this->getFirstname()) , 'NotEmpty')) {
-            $errors[] = Mage::helper('customer')->__('The first name cannot be empty.');
-        }
+        // if (!Zend_Validate::is( trim($this->getFirstname()) , 'NotEmpty')) {
+        //     $errors[] = Mage::helper('customer')->__('The first name cannot be empty.');
+        // }
 
-        if (!Zend_Validate::is( trim($this->getLastname()) , 'NotEmpty')) {
-            $errors[] = Mage::helper('customer')->__('The last name cannot be empty.');
-        }
+        // if (!Zend_Validate::is( trim($this->getLastname()) , 'NotEmpty')) {
+        //     $errors[] = Mage::helper('customer')->__('The last name cannot be empty.');
+        // }
 
         if (!Zend_Validate::is($this->getEmail(), 'EmailAddress')) {
             $errors[] = Mage::helper('customer')->__('Invalid email address "%s".', $this->getEmail());
@@ -851,10 +851,10 @@ class Mage_Customer_Model_Customer extends Mage_Core_Model_Abstract
         if ($attribute->getIsRequired() && '' == trim($this->getDob())) {
             $errors[] = Mage::helper('customer')->__('The Date of Birth is required.');
         }
-        $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'taxvat');
-        if ($attribute->getIsRequired() && '' == trim($this->getTaxvat())) {
-            $errors[] = Mage::helper('customer')->__('The TAX/VAT number is required.');
-        }
+        // $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'taxvat');
+        // if ($attribute->getIsRequired() && '' == trim($this->getTaxvat())) {
+        //     $errors[] = Mage::helper('customer')->__('The TAX/VAT number is required.');
+        // }
         $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'gender');
         if ($attribute->getIsRequired() && '' == trim($this->getGender())) {
             $errors[] = Mage::helper('customer')->__('Gender is required.');

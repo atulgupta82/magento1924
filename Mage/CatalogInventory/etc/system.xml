@@ -90,6 +90,24 @@
                              <show_in_website>1</show_in_website>
                              <show_in_store>1</show_in_store>
                          </display_product_stock_status>
+                         <stock_available_text translate="label">
+                             <label>Texto de Disponibilidade</label>
+                             <frontend_type>text</frontend_type>
+                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                             <sort_order>51</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </stock_available_text>
+                         <stock_available_text_category translate="label">
+                             <label>Texto de Disponibilidade [Categorias]</label>
+                             <frontend_type>text</frontend_type>
+                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                             <sort_order>52</sort_order>
+                             <show_in_default>1</show_in_default>
+                             <show_in_website>1</show_in_website>
+                             <show_in_store>1</show_in_store>
+                         </stock_available_text_category>
                     </fields>
                 </options>
                 <item_options translate="label comment">
